@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Cutie 🎂</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
+    text-align: center;
+    overflow: hidden;
+    padding: 50px;
+    color: #d63384;
+  }
+
+  h1 {
+    font-size: 2.8em;
+    margin: 10px 0;
+    text-shadow: 2px 2px #fff;
+  }
+
+  h2 {
+    font-size: 1.8em;
+    margin: 5px 0 30px;
+  }
+
+  button {
+    background: #ff2d6f;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 30px;
+  }
+
+  button:hover {
+    background: #d81b60;
+  }
+
+  /* Balloons */
+  .balloon {
+    width: 50px;
+    height: 70px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -100px;
+    opacity: 0.9;
+  }
+
+  /* Strings */
+  .balloon::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 50px;
+    background: #555;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 70px;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-120vh); }
+  }
+
+  /* Confetti */
+  .confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: red;
+    top: -10px;
+    opacity: 0.9;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+  }
+</style>
+</head>
+<body>
+
+<h1>🎉 Happy Birthday Ayushi (Cutie) 🎂</h1>
+<h2>May God fill your life with happiness and joy 💖</h2>
+
+<h2>You are the best i wish mahadev always protect you and fullful your all wishes</h2>
+
+<button id="playBtn">🎵 Click here 5/6 time </button>
+
+<audio id="bdaySong">
+  <source src="birthday.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  // Play song button
+  const playBtn = document.getElementById('playBtn');
+  const song = document.getElementById('bdaySong');
+
+  playBtn.addEventListener('click', () => {
+    song.play().catch(err => {
+      alert("Press ▶ on the player to start the song manually");
+      song.setAttribute("controls", "true");
+    });
+    // Start animations after click
+    createBalloons();
+    createConfetti();
+  });
+
+  // Random color for balloons/confetti
+  function randomColor() {
+    const colors = ['#ff4081', '#ffeb3b', '#4caf50', '#2196f3', '#ff5722', '#9c27b0'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+
+  // Balloons
+  function createBalloons() {
+    for (let i = 0; i < 8; i++) {
+      let balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      balloon.style.left = Math.random() * window.innerWidth + 'px';
+      balloon.style.background = randomColor();
+      balloon.style.animation = `float ${5 + Math.random() * 5}s linear infinite`;
+      document.body.appendChild(balloon);
+    }
+  }
+
+  // Confetti
+  function createConfetti() {
+    for (let i = 0; i < 50; i++) {
+      let confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.background = randomColor();
+      confetti.style.animation = `fall ${3 + Math.random() * 3}s linear infinite`;
+      document.body.appendChild(confetti);
+    }
+  }
+</script>
+
+</body>
+</html>
+
